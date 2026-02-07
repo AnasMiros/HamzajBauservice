@@ -1,0 +1,1 @@
+(()=>{"use strict";document.querySelector(".container form")&&document.querySelector(".container form .headline").classList.add("biggerh2");const e=document.getElementsByClassName("wpscan-notice");for(const s of e)s.nextElementSibling.classList.contains("plugin-update-tr")&&(s.classList.add("no-shadow"),s.children[0].classList.add("no-shadow"))})();

@@ -1,0 +1,100 @@
+{
+    "@context": [
+        "https://www.w3.org/ns/activitystreams",
+        {
+            "bp": "https://wpblueprints.org/namespace",
+            "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+            "WebApplication": "schema:WebApplication",
+            "Blueprint": "bp:Blueprint",
+            "Install": "bp:Install",
+            "applicationSuite": "schema:applicationSuite"
+        }
+    ],
+    "type": [
+        "Collection",
+        "Blueprint"
+    ],
+    "content": "WP Blueprint",
+    "generator": {
+        "type": "WebApplication",
+        "name": "WordPress",
+        "version": "6.0.2",
+        "applicationCategory": "Application",
+        "applicationSuite": "WordPress"
+    },
+    "totalItems": 6,
+    "items": [
+        {
+            "type": "Install",
+            "summary": "Install Theme: Twenty Twenty",
+            "object": {
+                "type": "WebApplication",
+                "name": "twentytwenty",
+                "abstract": "Twenty Twenty",
+                "version": "1.8",
+                "applicationCategory": "Theme",
+                "applicationSuite": "WordPress"
+            }
+        },
+        {
+            "type": "Install",
+            "summary": "Install Theme: Twenty Twenty-One",
+            "object": {
+                "type": "WebApplication",
+                "name": "twentytwentyone",
+                "abstract": "Twenty Twenty-One",
+                "version": "1.4",
+                "applicationCategory": "Theme",
+                "applicationSuite": "WordPress"
+            }
+        },
+        {
+            "type": "Install",
+            "summary": "Install Theme: Twenty Twenty-Two",
+            "object": {
+                "type": "WebApplication",
+                "name": "twentytwentytwo",
+                "abstract": "Twenty Twenty-Two",
+                "version": "1.2",
+                "applicationCategory": "Theme",
+                "applicationSuite": "WordPress"
+            }
+        },
+        {
+            "type": "Activate",
+            "summary": "Activate Theme: Twenty Twenty-Two",
+            "object": {
+                "type": "WebApplication",
+                "name": "twentytwentytwo",
+                "abstract": "Twenty Twenty-Two",
+                "version": "1.2",
+                "applicationCategory": "Theme",
+                "applicationSuite": "WordPress"
+            }
+        },
+        {
+            "type": "Install",
+            "summary": "Install Plugin: Akismet Anti-Spam",
+            "object": {
+                "type": "WebApplication",
+                "name": "akismet",
+                "abstract": "Akismet Anti-Spam",
+                "version": "4.0",
+                "applicationCategory": "Plugin",
+                "applicationSuite": "WordPress"
+            }
+        },
+        {
+            "type": "Install",
+            "summary": "Install Plugin: Settings",
+            "object": {
+                "type": "WebApplication",
+                "name": "settings",
+                "abstract": "Settings",
+                "version": "",
+                "applicationCategory": "Plugin",
+                "applicationSuite": "WordPress"
+            }
+        }
+    ]
+}

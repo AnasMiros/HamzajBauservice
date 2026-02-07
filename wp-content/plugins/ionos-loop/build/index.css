@@ -1,0 +1,15 @@
+
+
+.icon:before{color:green;content:"✓";margin-right:10px}
+
+
+.button-primary,.button-primary-disabled{-webkit-user-select:none;-moz-user-select:none;user-select:none}.button-primary-disabled{pointer-events:none}.feedback{align-items:center;background:#fff;display:flex;height:100%;justify-content:center;left:0;position:absolute;top:0;width:100%}
+#ionos-loop-app .button-secondary,#ionos-loop-app .button-secondary-disabled{margin-left:12px;-webkit-user-select:none;-moz-user-select:none;user-select:none}#ionos-loop-app .button-secondary-disabled{background:#f6f7f7!important;border-color:#dcdcde!important;box-shadow:none!important;color:#a7aaad!important;cursor:default;pointer-events:none;text-shadow:none!important}
+.numberrange{margin:20px auto}.numberrange__field{display:flex;justify-content:space-around;margin-bottom:12px;padding:0 10px}.numberrange__field__item{align-items:center;display:flex;height:10px;justify-content:center;width:10px}.numberrange__field__item input{display:none}.numberrange__field__item input[type=radio]:checked+label{border:1.5px solid #2271b1;border-radius:2px;padding:6px 10px}.numberrange__text{color:#757575;display:flex;justify-content:space-between;margin:0 22px}
+
+.starrange{margin:20px auto}.starrange__field{display:flex;gap:8px;justify-content:center;margin-bottom:20px}.starrange__field__item{align-content:space-around;display:flex;flex-direction:row;flex-wrap:wrap;height:24px;justify-content:space-around;padding:0;width:24px}.starrange__field__item label{height:15px;width:15px}.starrange__field__item input{display:none}
+
+.radiobuttonrange{margin-top:12px}.radiobuttonrange__field{display:flex;flex-direction:column;flex-wrap:nowrap;gap:8px}
+.ionos_loop__header{margin-bottom:36px}.ionos_loop__header h1.ionos_loop__headline{font-size:32px}.ionos_loop__header>ul{display:flex;flex-direction:column;gap:12px}.ionos_loop__header>ul li{list-style-type:none}.ionos_loop__header>ul li.ionos_loop__list{align-items:flex-start;display:flex;margin-bottom:0}.ionos_loop__header>ul li.ionos_loop__list .ionos_loop__check{align-content:space-around;display:flex;flex-wrap:wrap;height:24px;justify-content:space-around;width:24px}.ionos_loop__header>ul li.ionos_loop__list .ionos_loop__check img{height:10.6px;width:11.7px}.ionos_loop__header>ul li.ionos_loop__list ul{margin-left:14px}.ionos_loop__subheadline{color:#757575}
+.ionos_loop{margin-bottom:48px}.ionos_loop .buttonsrow{margin-top:24px}
+

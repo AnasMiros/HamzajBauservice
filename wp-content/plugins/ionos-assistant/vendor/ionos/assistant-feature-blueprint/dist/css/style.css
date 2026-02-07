@@ -1,0 +1,83 @@
+.ionos-blueprint li {
+  padding: 7px 0;
+}
+.ionos-blueprint .card {
+  padding: 20px;
+}
+.ionos-blueprint .card p:first-child {
+  margin-top: 0;
+}
+.ionos-blueprint input.toggle {
+  display: none;
+}
+.ionos-blueprint input.toggle:checked + label.toggle {
+  border-color: #2271b1;
+}
+.ionos-blueprint input.toggle:checked + label.toggle:before {
+  background-color: #2271b1;
+}
+.ionos-blueprint input.toggle:checked + label.toggle:after {
+  background-color: white;
+  left: 23px;
+}
+.ionos-blueprint input.toggle:checked:disabled + label.toggle {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.ionos-blueprint label.toggle {
+  position: relative;
+  display: flex;
+  cursor: pointer;
+  padding-left: 50px;
+  min-height: 21px;
+  align-items: center;
+}
+.ionos-blueprint label.toggle:before {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 21px;
+  top: 0;
+  left: 0;
+  background: white;
+  border: 1px solid gray;
+  border-radius: 100px;
+  transition: all 0.5s;
+}
+.ionos-blueprint label.toggle:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  top: 4px;
+  left: 4px;
+  background: black;
+  border-radius: 50%;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.ionos-blueprint label.toggle .hint {
+  color: #999999;
+  margin-left: 1em;
+}
+.ionos-blueprint label.toggle .hint::before {
+  content: "(";
+}
+.ionos-blueprint label.toggle .hint::after {
+  content: ")";
+}
+
+.ionos-blueprint .ionos-blueprint-list {
+  margin-left: 2em;
+  max-height: 0;
+  overflow: hidden;
+}
+.ionos-blueprint .margin-top {
+  margin-top: 1rem;
+}
+.ionos-blueprint .slided-up {
+  max-height: 2400px;
+  transition: all 1s;
+}
+
+/*# sourceMappingURL=style.css.map */
