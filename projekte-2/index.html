@@ -604,7 +604,9 @@
         /* ====== Responsive Design ====== */
         @media (max-width: 1024px) {
             .footer-content {
-                grid-template-columns: repeat(2, 1fr);
+                flex-direction: column;
+                gap: 30px;
+                text-align: center;
             }
 
             .about-content,
@@ -630,6 +632,7 @@
                 border-bottom-right-radius: 50px;
                 padding: 100px 0;
             }
+          
         }
 
         @media (max-width: 768px) {

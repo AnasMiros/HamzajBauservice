@@ -5,8 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontakt – Hamzaj Bauservice</title>
     <link rel="icon" href="./../wp-content/uploads/2025/03/cropped-Screenshot_2025-03-22_121532-removebg-preview-32x32.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+        /* ===== VARIABLEN ===== */
+        :root {
+            --primary-color: #4e0909;
+            --primary-dark: #4d2222;
+            --secondary-color: #b20707;
+            --accent-color: #ae4141;
+            --light-color: #ffffff;
+            --dark-color: #333333;
+            --gray-color: #666666;
+            --light-gray: #f5f5f5;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --border-radius: 8px;
+            --section-spacing: 80px;
+        }
+
         /* Reset und Basis-Styles */
         * {
             margin: 0;
@@ -283,15 +300,112 @@
             max-width: 300px;
         }
 
-        /* Footer */
+        /* ====== Footer ====== */
         .footer {
-            background: #202A35;
-            color: white;
-            padding: 40px 20px;
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            padding: 60px 0 30px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--light-color);
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+            .footer-col h4:after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 40px;
+                height: 2px;
+                background-color: var(--secondary-color);
+            }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+            .footer-col ul li {
+                margin-bottom: 10px;
+            }
+
+                .footer-col ul li a {
+                    color: var(--light-color);
+                    text-decoration: none;
+                    transition: var(--transition);
+                }
+
+                    .footer-col ul li a:hover {
+                        color: var(--secondary-color);
+                        padding-left: 5px;
+                    }
+
+        .footer-contact li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .footer-contact i {
+            color: var(--secondary-color);
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+            .social-links a {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                background-color: #444;
+                border-radius: 50%;
+                transition: var(--transition);
+            }
+
+                .social-links a:hover {
+                    background-color: var(--secondary-color);
+                    transform: translateY(-5px);
+                }
+
+        .copyright {
             text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            font-size: 0.9rem;
+            color: var(--light-color);
         }
 
         /* Responsive Design */
+        @media (max-width: 992px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
             .hamburger {
                 display: flex;
@@ -311,6 +425,12 @@
 
             .contact-item {
                 padding: 30px 15px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
             }
         }
 
@@ -352,7 +472,7 @@
                     </div>
                 </div>
 
-                <a href="./../projekte/index.html" class="nav-link">Projekte</a>
+                <a href="./../projekte-2/index.html" class="nav-link">Projekte</a>
                 <a href="./../kontakt/index.html" class="nav-link active">Kontakt</a>
                 <a href="./../ueber-uns/index.html" class="nav-link">Über uns</a>
             </nav>
@@ -436,8 +556,62 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <p>© 2025 Hamzaj Bauservice. Alle Rechte vorbehalten.</p>
-        <p>Ihr verlässlicher Partner für Bau und Renovierung in Berlin</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>Hamzaj Bauservice</h4>
+                    <p>Ihr zuverlässiger Partner für Bau- und Renovierungsarbeiten in Berlin und Umgebung. Professionelle Handwerksleistungen seit über 10 Jahren.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Leistungen</h4>
+                    <ul>
+                        <li><a href="./../trockenbau-2/index.html">Trockenbau</a></li>
+                        <li><a href="./../fasadenarbeit/index.html">Fasadenarbeit</a></li>
+                        <li><a href="./../elektro-sanitaerarbeiten/index.html">Elektro & Sanitär</a></li>
+                        <li><a href="./../fussbodenheizungen/index.html">Fußbodenheizung</a></li>
+                        <li><a href="./../kernsanierung/index.html">Kernsanierung</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="./../index.html">Startseite</a></li>
+                        <li><a href="./../projekte/index.html">Projekte</a></li>
+                        <li><a href="./../ueber-uns/index.html">Über uns</a></li>
+                        <li><a href="./../kontakt/index.html">Kontakt</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Kontakt</h4>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Mariendorfer Damm 99<br>12109 Berlin</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>0157 588 68 458</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>hamzaj.bauservice@gmail.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2025 Hamzaj Bauservice. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
     </footer>
 
     <script>
