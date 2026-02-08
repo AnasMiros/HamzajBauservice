@@ -11,6 +11,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&family=Pacifico&display=swap" rel="stylesheet">
 
+    <!-- Font Awesome für Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         /* Reset und Basis-Styles */
         * {
@@ -68,6 +71,7 @@
             align-items: center;
         }
 
+        /* HOVER LINIE FÜR DESKTOP NAVIGATION */
         .nav-link {
             text-decoration: none;
             color: #333;
@@ -75,7 +79,26 @@
             padding: 8px 16px;
             border-radius: 4px;
             transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
         }
+
+            .nav-link::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                width: 0;
+                height: 2px;
+                background-color: #4e0909;
+                transition: all 0.3s ease;
+                transform: translateX(-50%);
+            }
+
+            .nav-link:hover::after,
+            .nav-link.active::after {
+                width: 80%;
+            }
 
             .nav-link:hover, .nav-link.active {
                 color: #4e0909;
@@ -96,6 +119,7 @@
             top: 100%;
             left: 0;
             z-index: 1001;
+            padding: 10px 0;
         }
 
         .dropdown:hover .dropdown-content {
@@ -108,7 +132,26 @@
             color: #333;
             text-decoration: none;
             border-bottom: 1px solid #eee;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
         }
+
+            /* HOVER LINIE FÜR DROPDOWN-LINKS */
+            .dropdown-content a::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 16px;
+                width: 0;
+                height: 1px;
+                background-color: #4e0909;
+                transition: all 0.3s ease;
+            }
+
+            .dropdown-content a:hover::after {
+                width: calc(100% - 32px);
+            }
 
             .dropdown-content a:hover {
                 background: #f5f5f5;
@@ -155,7 +198,26 @@
                 text-decoration: none;
                 border-bottom: 1px solid #eee;
                 font-size: 18px;
+                transition: all 0.3s;
+                position: relative;
+                overflow: hidden;
             }
+
+                /* HOVER LINIE FÜR MOBILE NAVIGATION */
+                .mobile-nav a::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 20px;
+                    width: 0;
+                    height: 1px;
+                    background-color: #4e0909;
+                    transition: all 0.3s ease;
+                }
+
+                .mobile-nav a:hover::after {
+                    width: calc(100% - 40px);
+                }
 
                 .mobile-nav a:hover {
                     background: #f5f5f5;
@@ -169,6 +231,22 @@
 
             .mobile-dropdown-content.active {
                 display: block;
+            }
+
+            /* HOVER LINIE FÜR MOBILE DROPDOWN-LINKS */
+            .mobile-dropdown-content a::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 20px;
+                width: 0;
+                height: 1px;
+                background-color: #4e0909;
+                transition: all 0.3s ease;
+            }
+
+            .mobile-dropdown-content a:hover::after {
+                width: calc(100% - 40px);
             }
 
         /* Hero Section */
@@ -284,8 +362,6 @@
             margin: 0 5px;
             padding: 0 5px;
         }
-
-           
 
         /* Tipp-Animation */
         .typing-container {
@@ -477,11 +553,82 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             width: 100%;
+            position: relative;
         }
 
             .submit-btn:hover {
                 background: #b20707;
             }
+
+        /* Erfolgs-/Fehler-Meldungen */
+        .alert {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .alert-info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        /* Formular-Status */
+        .form-loading {
+            position: relative;
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+            .form-loading::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 30px;
+                height: 30px;
+                margin: -15px 0 0 -15px;
+                border: 3px solid #f3f3f3;
+                border-top: 3px solid #4e0909;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
 
         /* Vorteile Section */
         .vorteile-section {
@@ -665,10 +812,6 @@
             .projekt, .verwirklichen {
                 font-size: 1.1em;
             }
-
-                .verwirklichen::before {
-                    display: none; /* Schriftart-Symbol auf kleinen Bildschirmen ausblenden */
-                }
         }
 
         @media (min-width: 769px) {
@@ -774,62 +917,125 @@
     <section class="parallax-section">
         <div class="parallax-background"></div>
 
-        <!-- Formular Section -->
+        <!-- Status-Meldungen -->
         <div class="form-section">
-            <div class="form-header">
-                <div class="form-icon">
-                    <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
-                        <path d="M21,6V8H3V6H21M3,18H12V16H3V18M3,13H21V11H3V13Z" />
-                    </svg>
-                </div>
-                <h3>Kostenloses Angebot anfordern</h3>
-                <p>Wir melden uns innerhalb von 24 Stunden bei Ihnen</p>
-            </div>
-
             <div class="form-container">
-                <form class="contact-form" id="angebotForm">
+                <div class="alert alert-info" id="infoAlert">
+                    <i class="fas fa-info-circle"></i> Bitte füllen Sie alle Pflichtfelder aus (*).
+                </div>
+
+                <div class="alert alert-success" id="successAlert" style="display: none;">
+                    <i class="fas fa-check-circle"></i> Vielen Dank für Ihre Angebotsanfrage! Wir melden uns innerhalb von 24 Stunden bei Ihnen.
+                </div>
+
+                <div class="alert alert-error" id="errorAlert" style="display: none;">
+                    <i class="fas fa-exclamation-circle"></i> Es gab einen Fehler beim Senden. Bitte versuchen Sie es später erneut.
+                </div>
+
+                <div class="form-header">
+                    <div class="form-icon">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3>Kostenloses Angebot anfordern</h3>
+                    <p>Wir melden uns innerhalb von 24 Stunden bei Ihnen</p>
+                </div>
+
+                <!-- FUNKTIONIERENDES Angebotsformular mit FormSubmit -->
+                <form class="contact-form" id="angebotForm" action="https://formsubmit.co/ajax/hamzaj.bauservice@gmail.com" method="POST">
+                    <!-- Hidden Fields für FormSubmit -->
+                    <input type="hidden" name="_subject" value="Neue Angebotsanfrage - Hamzaj Bauservice">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_autoresponse" value="Vielen Dank für Ihre Angebotsanfrage bei Hamzaj Bauservice! Wir werden Ihre Anfrage prüfen und melden uns innerhalb von 24 Stunden bei Ihnen mit einem persönlichen Angebot.">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="#">
+
                     <div class="form-group">
                         <label for="name">Name *</label>
-                        <input type="text" id="name" class="form-control" placeholder="Ihr vollständiger Name" required>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Ihr vollständiger Name" required>
                     </div>
 
                     <div class="form-group">
                         <label for="email">E-Mail-Adresse *</label>
-                        <input type="email" id="email" class="form-control" placeholder="Ihre E-Mail-Adresse" required>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Ihre E-Mail-Adresse" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="phone">Telefonnummer</label>
-                        <input type="tel" id="phone" class="form-control" placeholder="Ihre Telefonnummer">
+                        <label for="phone">Telefonnummer *</label>
+                        <input type="tel" id="phone" name="phone" class="form-control" placeholder="Ihre Telefonnummer" required>
                     </div>
 
                     <div class="form-group">
                         <label for="address">Adresse</label>
-                        <input type="text" id="address" class="form-control" placeholder="Straße und Hausnummer">
+                        <input type="text" id="address" name="address" class="form-control" placeholder="Straße und Hausnummer">
                     </div>
 
                     <div class="form-group">
-                        <label for="plz">PLZ / Ort</label>
-                        <input type="text" id="plz" class="form-control" placeholder="PLZ und Ort">
+                        <label for="plz">PLZ / Ort *</label>
+                        <input type="text" id="plz" name="plz_ort" class="form-control" placeholder="PLZ und Ort" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="projekt">Projektbeschreibung *</label>
-                        <textarea id="projekt" class="form-control" placeholder="Beschreiben Sie Ihr Bau- oder Renovierungsvorhaben..." required></textarea>
+                        <label for="dienstleistung">Gewünschte Dienstleistung *</label>
+                        <select id="dienstleistung" name="dienstleistung" class="form-control" required>
+                            <option value="">Bitte auswählen</option>
+                            <option value="Haus Renovierung">Haus Renovierung</option>
+                            <option value="Küchen Renovierung">Küchen Renovierung</option>
+                            <option value="Badezimmer Renovierung">Badezimmer Renovierung</option>
+                            <option value="Trockenbau">Trockenbau</option>
+                            <option value="Fassadenarbeit">Fassadenarbeit</option>
+                            <option value="Elektro & Sanitär">Elektro & Sanitär</option>
+                            <option value="Fußbodenheizung">Fußbodenheizung</option>
+                            <option value="Fußbodenverlegung">Fußbodenverlegung</option>
+                            <option value="Spachtel & Malerarbeiten">Spachtel & Malerarbeiten</option>
+                            <option value="Abbrucharbeiten">Abbrucharbeiten</option>
+                            <option value="Dachdeckerarbeit">Dachdeckerarbeit</option>
+                            <option value="Kernsanierung">Kernsanierung</option>
+                            <option value="Fliesenverlegung">Fliesenverlegung</option>
+                            <option value="Mehrere Dienstleistungen">Mehrere Dienstleistungen</option>
+                            <option value="Andere">Andere Dienstleistung</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
-                        <label>Bilder hochladen (optional)</label>
+                        <label for="projektbeschreibung">Projektbeschreibung *</label>
+                        <textarea id="projektbeschreibung" name="projektbeschreibung" class="form-control" placeholder="Beschreiben Sie Ihr Bau- oder Renovierungsvorhaben..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="zeitrahmen">Gewünschter Zeitrahmen</label>
+                        <select id="zeitrahmen" name="zeitrahmen" class="form-control">
+                            <option value="">Bitte auswählen</option>
+                            <option value="Dringend (so schnell wie möglich)">Dringend (so schnell wie möglich)</option>
+                            <option value="Innerhalb der nächsten 4 Wochen">Innerhalb der nächsten 4 Wochen</option>
+                            <option value="In 1-3 Monaten">In 1-3 Monaten</option>
+                            <option value="In 3-6 Monaten">In 3-6 Monaten</option>
+                            <option value="Flexibel, kein fester Termin">Flexibel, kein fester Termin</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Bilder/Pläne hochladen (optional)</label>
                         <div class="file-upload">
                             <label for="fileUpload" class="file-label">
-                                Klicken Sie hier oder ziehen Sie Bilder per Drag & Drop<br>
+                                Klicken Sie hier oder ziehen Sie Dateien per Drag & Drop<br>
                                 <span>Dateien auswählen</span>
                             </label>
-                            <input type="file" id="fileUpload" multiple accept="image/*">
+                            <input type="file" id="fileUpload" multiple accept="image/*,.pdf,.doc,.docx">
                         </div>
+                        <small class="form-text">Unterstützt: Bilder (JPG, PNG), PDF, Word (max. 10 MB)</small>
                     </div>
 
-                    <button type="submit" class="submit-btn">Angebot anfordern</button>
+                    <div class="form-group">
+                        <label for="zusatzinfos">Zusätzliche Informationen</label>
+                        <textarea id="zusatzinfos" name="zusatzinfos" class="form-control" placeholder="Weitere Anmerkungen, spezielle Wünsche oder Fragen..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <span id="btnText">Kostenloses Angebot anfordern</span>
+                        <div id="loadingSpinner" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i> Angebot wird gesendet...
+                        </div>
+                    </button>
                 </form>
             </div>
         </div>
@@ -844,9 +1050,7 @@
         <div class="vorteile-grid">
             <div class="vorteil-card">
                 <div class="vorteil-icon">
-                    <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
-                        <path d="M9,1L3.5,6H6V13H8V6H9M11,13C12.1,13 13,13.9 13,15V18C13,19.1 12.1,20 11,20H2C0.9,20 0,19.1 0,18V15C0,13.9 0.9,13 2,13H11M2,15V18H11V15H2M22,13C23.1,13 24,13.9 24,15V18C24,19.1 23.1,20 22,20H13C11.9,20 11,19.1 11,18V15C11,13.9 11.9,13 13,13H22M13,15V18H22V15H13M15,1L20.5,6H18V13H16V6H15M9,13V15H11V13H9Z" />
-                    </svg>
+                    <i class="fas fa-euro-sign"></i>
                 </div>
                 <h4>Kostenlose Beratung</h4>
                 <p>Persönliche Vor-Ort-Beratung ohne versteckte Kosten</p>
@@ -854,9 +1058,7 @@
 
             <div class="vorteil-card">
                 <div class="vorteil-icon">
-                    <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
-                        <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M17.13,17C15.92,18.85 14.11,20.24 12,20.92C9.89,20.24 8.08,18.85 6.87,17C6.53,16.5 6.24,16 6,15.47C6,13.82 8.71,12.47 12,12.47C15.29,12.47 18,13.79 18,15.47C17.76,16 17.47,16.5 17.13,17Z" />
-                    </svg>
+                    <i class="fas fa-shield-alt"></i>
                 </div>
                 <h4>Transparente Preise</h4>
                 <p>Keine versteckten Kosten, faire und klare Preisgestaltung</p>
@@ -864,9 +1066,7 @@
 
             <div class="vorteil-card">
                 <div class="vorteil-icon">
-                    <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
-                        <path d="M12,8H4A2,2 0 0,0 2,10V14A2,2 0 0,0 4,16H5V20A1,1 0 0,0 6,21H8A1,1 0 0,0 9,20V16H12L17,20V4L12,8M21.5,12C21.5,13.71 20.54,15.26 19,16V8C20.53,8.75 21.5,10.3 21.5,12Z" />
-                    </svg>
+                    <i class="fas fa-tools"></i>
                 </div>
                 <h4>Fachkompetenz</h4>
                 <p>Über 10 Jahre Erfahrung im Bau- und Renovierungsbereich</p>
@@ -874,9 +1074,7 @@
 
             <div class="vorteil-card">
                 <div class="vorteil-icon">
-                    <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
-                        <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
-                    </svg>
+                    <i class="fas fa-clock"></i>
                 </div>
                 <h4>24h Rückruf</h4>
                 <p>Schnelle Reaktionszeit - wir melden uns innerhalb von 24 Stunden</p>
@@ -892,16 +1090,12 @@
 
             <div class="cta-buttons">
                 <a href="tel:015758868458" class="cta-btn primary">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="margin-right: 10px;">
-                        <path d="M6.62 10.79C8.06 13.62 10.38 15.94 13.21 17.38L15.41 15.18C15.69 14.9 16.08 14.82 16.43 14.93C17.55 15.3 18.75 15.5 20 15.5C20.55 15.5 21 15.95 21 16.5V20C21 20.55 20.55 21 20 21C10.61 21 3 13.39 3 4C3 3.45 3.45 3 4 3H7.5C8.05 3 8.5 3.45 8.5 4C8.5 5.25 8.7 6.45 9.07 7.57C9.18 7.92 9.1 8.31 8.82 8.59L6.62 10.79Z" />
-                    </svg>
+                    <i class="fas fa-phone"></i>
                     0157 588 68 458
                 </a>
-                <a href="mailto:hamzaj.bauservice@gmail.com" class="cta-btn secondary">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="margin-right: 10px;">
-                        <path d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z" />
-                    </svg>
-                    E-Mail senden
+                <a href="#angebotForm" class="cta-btn secondary">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    Jetzt Angebot anfordern
                 </a>
             </div>
         </div>
@@ -949,30 +1143,98 @@
 
         observer.observe(typingText);
 
-        // Formular Validierung und Submit
+        // Formular Handling
         const angebotForm = document.getElementById('angebotForm');
         const fileUpload = document.getElementById('fileUpload');
         const fileLabel = document.querySelector('.file-label span');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const successAlert = document.getElementById('successAlert');
+        const errorAlert = document.getElementById('errorAlert');
+        const infoAlert = document.getElementById('infoAlert');
 
         // File upload label update
-        fileUpload.addEventListener('change', function() {
+        fileUpload.addEventListener('change', function () {
             if (this.files.length > 0) {
+                const fileNames = Array.from(this.files).map(file => file.name);
                 fileLabel.textContent = `${this.files.length} Datei(en) ausgewählt`;
             } else {
                 fileLabel.textContent = 'Dateien auswählen';
             }
         });
 
-        // Form submit
-        angebotForm.addEventListener('submit', function(e) {
+        // FUNKTIONIERENDES FORMULAR mit FormSubmit
+        angebotForm.addEventListener('submit', async function (e) {
             e.preventDefault();
 
-            // Hier würde normalerweise die Formular-Verarbeitung stattfinden
-            // Für dieses Beispiel zeigen wir nur eine Bestätigung
+            // Alle Alerts ausblenden
+            successAlert.style.display = 'none';
+            errorAlert.style.display = 'none';
+            infoAlert.style.display = 'none';
 
-            alert('Vielen Dank für Ihre Anfrage! Wir melden uns innerhalb von 24 Stunden bei Ihnen.');
-            this.reset();
-            fileLabel.textContent = 'Dateien auswählen';
+            // Loading State aktivieren
+            submitBtn.disabled = true;
+            btnText.style.display = 'none';
+            loadingSpinner.style.display = 'inline-block';
+
+            try {
+                const formData = new FormData(this);
+
+                // Dateien hinzufügen, wenn vorhanden
+                if (fileUpload.files.length > 0) {
+                    for (let i = 0; i < fileUpload.files.length; i++) {
+                        formData.append('files', fileUpload.files[i]);
+                    }
+                }
+
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    body: formData
+                });
+
+                if (response.ok) {
+                    // Erfolg
+                    successAlert.style.display = 'block';
+                    angebotForm.reset();
+                    fileLabel.textContent = 'Dateien auswählen';
+
+                    // Nach 5 Sekunden zum Formular scrollen
+                    setTimeout(() => {
+                        document.querySelector('.parallax-section').scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }, 500);
+
+                    // Erfolgsmeldung nach 10 Sekunden ausblenden
+                    setTimeout(() => {
+                        successAlert.style.display = 'none';
+                        infoAlert.style.display = 'block';
+                    }, 10000);
+                } else {
+                    // Fehler
+                    throw new Error('FormSubmit returned an error');
+                }
+            } catch (error) {
+                console.error('Form submission error:', error);
+
+                // Fehlermeldung anzeigen
+                errorAlert.style.display = 'block';
+
+                // Fehlermeldung nach 5 Sekunden ausblenden
+                setTimeout(() => {
+                    errorAlert.style.display = 'none';
+                    infoAlert.style.display = 'block';
+                }, 5000);
+            } finally {
+                // Loading State zurücksetzen
+                submitBtn.disabled = false;
+                btnText.style.display = 'inline-block';
+                loadingSpinner.style.display = 'none';
+            }
         });
 
         // Smooth scroll for anchor links
@@ -990,7 +1252,7 @@
         });
 
         // Parallax Effekt für besseres Scroll-Verhalten
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const parallax = document.querySelector('.parallax-background');
             const scrolled = window.pageYOffset;
             const parallaxSection = document.querySelector('.parallax-section');
@@ -1003,11 +1265,48 @@
             }
         });
 
-        // Bildquelle für das rechte Bild ändern, wenn gewünscht
-        // Hier können Sie Ihr eigenes Bild einfügen
-        const gradientImage = document.querySelector('.gradient-image');
-        // Falls Sie ein eigenes Bild verwenden möchten:
-        // gradientImage.style.backgroundImage = 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 30%, rgba(255,255,255,1) 100%), url("IHR-BILD-LINK-HIER")';
+        // Form validation
+        const inputs = angebotForm.querySelectorAll('input, textarea, select');
+        inputs.forEach(input => {
+            input.addEventListener('input', () => {
+                if (input.checkValidity()) {
+                    input.classList.remove('invalid');
+                }
+            });
+
+            input.addEventListener('invalid', () => {
+                input.classList.add('invalid');
+            });
+        });
+
+        // Drag & Drop für Dateiupload
+        const fileUploadArea = document.querySelector('.file-upload');
+        fileUploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            fileUploadArea.style.borderColor = '#4e0909';
+            fileUploadArea.style.backgroundColor = 'rgba(78, 9, 9, 0.05)';
+        });
+
+        fileUploadArea.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            fileUploadArea.style.borderColor = '#ddd';
+            fileUploadArea.style.backgroundColor = '';
+        });
+
+        fileUploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileUploadArea.style.borderColor = '#ddd';
+            fileUploadArea.style.backgroundColor = '';
+
+            if (e.dataTransfer.files.length > 0) {
+                fileUpload.files = e.dataTransfer.files;
+                fileLabel.textContent = `${e.dataTransfer.files.length} Datei(en) ausgewählt`;
+
+                // Event auslösen, um FormData zu aktualisieren
+                const event = new Event('change', { bubbles: true });
+                fileUpload.dispatchEvent(event);
+            }
+        });
     </script>
 </body>
 </html>
