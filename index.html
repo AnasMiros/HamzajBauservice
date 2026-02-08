@@ -938,6 +938,76 @@
             font-weight: 600;
         }
 
+        /* Erfolgs-/Fehler-Meldungen */
+        .alert {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .alert-info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        /* Formular-Status */
+        .form-loading {
+            position: relative;
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+            .form-loading::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 30px;
+                height: 30px;
+                margin: -15px 0 0 -15px;
+                border: 3px solid #f3f3f3;
+                border-top: 3px solid var(--color-primary);
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
         /* Footer */
         .footer {
             background-color: var(--color-primary);
@@ -1443,6 +1513,19 @@
                 <h2 style="color: var(--color-primary);">Kontaktieren Sie uns</h2>
                 <div class="divider"></div>
 
+                <!-- Status-Meldungen -->
+                <div class="alert alert-info" id="infoAlert">
+                    <i class="fas fa-info-circle"></i> Bitte füllen Sie alle Pflichtfelder aus (*).
+                </div>
+
+                <div class="alert alert-success" id="successAlert" style="display: none;">
+                    <i class="fas fa-check-circle"></i> Vielen Dank für Ihre Nachricht! Wir melden uns in Kürze bei Ihnen.
+                </div>
+
+                <div class="alert alert-error" id="errorAlert" style="display: none;">
+                    <i class="fas fa-exclamation-circle"></i> Es gab einen Fehler beim Senden. Bitte versuchen Sie es später erneut.
+                </div>
+
                 <div class="contact-info">
                     <div class="contact-item">
                         <div class="contact-icon">
@@ -1471,34 +1554,69 @@
                         <div>
                             <h4>Adresse</h4>
                             <p>
-                                Mariendorfer Damm 99<br> 12109 Berlin</p>
+                                Mariendorfer Damm 99
+                                <br>12109 Berlin
+                            </p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Fixed Contact Form -->
-                <form class="contact-form" id="contactForm">
+                <!-- FUNKTIONIERENDES Contact Form -->
+                <form class="contact-form" id="contactForm" action="https://formsubmit.co/ajax/hamzaj.bauservice@gmail.com" method="POST">
+                    <!-- Hidden Fields für FormSubmit -->
+                    <input type="hidden" name="_subject" value="Neue Kontaktanfrage - Hamzaj Bauservice">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_autoresponse" value="Vielen Dank für Ihre Anfrage bei Hamzaj Bauservice! Wir werden uns in Kürze bei Ihnen melden.">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="#">
+
                     <div class="form-group">
                         <label for="name">Name *</label>
-                        <input type="text" id="name" class="form-control" placeholder="Ihr Name" required>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Ihr Name" required>
                     </div>
 
                     <div class="form-group">
                         <label for="email">E-Mail *</label>
-                        <input type="email" id="email" class="form-control" placeholder="Ihre E-Mail-Adresse" required>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Ihre E-Mail-Adresse" required>
                     </div>
 
                     <div class="form-group">
                         <label for="phone">Telefon</label>
-                        <input type="tel" id="phone" class="form-control" placeholder="Ihre Telefonnummer">
+                        <input type="tel" id="phone" name="phone" class="form-control" placeholder="Ihre Telefonnummer">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service">Art der Dienstleistung</label>
+                        <select id="service" name="service" class="form-control">
+                            <option value="">Bitte auswählen</option>
+                            <option value="Haus Renovierung">Haus Renovierung</option>
+                            <option value="Küchen Renovierung">Küchen Renovierung</option>
+                            <option value="Badezimmer Renovierung">Badezimmer Renovierung</option>
+                            <option value="Trockenbau">Trockenbau</option>
+                            <option value="Fassadenarbeit">Fassadenarbeit</option>
+                            <option value="Elektro & Sanitär">Elektro & Sanitär</option>
+                            <option value="Fußbodenheizung">Fußbodenheizung</option>
+                            <option value="Fußbodenverlegung">Fußbodenverlegung</option>
+                            <option value="Spachtel & Malerarbeiten">Spachtel & Malerarbeiten</option>
+                            <option value="Abbrucharbeiten">Abbrucharbeiten</option>
+                            <option value="Dachdeckerarbeit">Dachdeckerarbeit</option>
+                            <option value="Kernsanierung">Kernsanierung</option>
+                            <option value="Fliesenverlegung">Fliesenverlegung</option>
+                            <option value="Andere">Andere Dienstleistung</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
                         <label for="message">Nachricht *</label>
-                        <textarea id="message" class="form-control" placeholder="Beschreiben Sie Ihr Projekt..." required></textarea>
+                        <textarea id="message" name="message" class="form-control" placeholder="Beschreiben Sie Ihr Projekt..." required></textarea>
                     </div>
 
-                    <button type="submit" class="btn submit-btn">Nachricht senden</button>
+                    <button type="submit" class="btn submit-btn" id="submitBtn">
+                        <span id="btnText">Nachricht senden</span>
+                        <div id="loadingSpinner" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i> Wird gesendet...
+                        </div>
+                    </button>
                 </form>
             </div>
         </div>
@@ -1619,13 +1737,13 @@
 
         // Smooth Scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
+                if (targetId === '#') return;
 
                 const targetElement = document.querySelector(targetId);
-                if(targetElement) {
+                if (targetElement) {
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
@@ -1642,15 +1760,103 @@
             });
         });
 
-        // Form Submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
+        // FUNKTIONIERENDES FORMULAR mit FormSubmit
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const successAlert = document.getElementById('successAlert');
+        const errorAlert = document.getElementById('errorAlert');
+        const infoAlert = document.getElementById('infoAlert');
+
+        contactForm.addEventListener('submit', async function (e) {
             e.preventDefault();
 
-            // Here you would normally send the form data to a server
-            // For now, we'll just show an alert
-            alert('Vielen Dank für Ihre Nachricht! Wir werden uns in Kürze bei Ihnen melden.');
-            this.reset();
+            // Alle Alerts ausblenden
+            successAlert.style.display = 'none';
+            errorAlert.style.display = 'none';
+            infoAlert.style.display = 'none';
+
+            // Loading State aktivieren
+            submitBtn.disabled = true;
+            btnText.style.display = 'none';
+            loadingSpinner.style.display = 'inline-block';
+
+            try {
+                const formData = new FormData(this);
+
+                // Debugging: FormData ausgeben
+                console.log('FormData:', Object.fromEntries(formData));
+
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    body: formData
+                });
+
+                console.log('Response:', response);
+
+                if (response.ok) {
+                    // Erfolg
+                    successAlert.style.display = 'block';
+                    contactForm.reset();
+
+                    // Nach 5 Sekunden zum Kontaktbereich scrollen
+                    setTimeout(() => {
+                        document.getElementById('contact').scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }, 500);
+
+                    // Erfolgsmeldung nach 10 Sekunden ausblenden
+                    setTimeout(() => {
+                        successAlert.style.display = 'none';
+                        infoAlert.style.display = 'block';
+                    }, 10000);
+                } else {
+                    // Fehler
+                    const errorData = await response.json();
+                    console.error('FormSubmit Error:', errorData);
+                    throw new Error('FormSubmit returned an error');
+                }
+            } catch (error) {
+                console.error('Form submission error:', error);
+
+                // Fehlermeldung anzeigen
+                errorAlert.style.display = 'block';
+
+                // Fehlermeldung nach 5 Sekunden ausblenden
+                setTimeout(() => {
+                    errorAlert.style.display = 'none';
+                    infoAlert.style.display = 'block';
+                }, 5000);
+            } finally {
+                // Loading State zurücksetzen
+                submitBtn.disabled = false;
+                btnText.style.display = 'inline-block';
+                loadingSpinner.style.display = 'none';
+            }
         });
+
+        // Alternative: Falls FormSubmit nicht funktioniert, diese Funktion aktivieren
+        /*
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Simulierter Erfolg für Testing
+            successAlert.style.display = 'block';
+            contactForm.reset();
+
+            setTimeout(() => {
+                successAlert.style.display = 'none';
+                infoAlert.style.display = 'block';
+            }, 5000);
+
+            return false;
+        });
+        */
 
         // Animate checkpoints on scroll
         const checkpointsObserver = new IntersectionObserver((entries) => {
@@ -1666,6 +1872,20 @@
 
         document.querySelectorAll('.checkpoint').forEach(checkpoint => {
             checkpointsObserver.observe(checkpoint);
+        });
+
+        // Form validation
+        const inputs = contactForm.querySelectorAll('input, textarea, select');
+        inputs.forEach(input => {
+            input.addEventListener('input', () => {
+                if (input.checkValidity()) {
+                    input.classList.remove('invalid');
+                }
+            });
+
+            input.addEventListener('invalid', () => {
+                input.classList.add('invalid');
+            });
         });
     </script>
 </body>
