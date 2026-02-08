@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="./../wp-content/uploads/2025/03/cropped-Screenshot_2025-03-22_121532-removebg-preview-32x32.png">
 
     <style>
         /* ===== VARIABLEN ===== */
@@ -26,7 +27,7 @@
             --section-spacing: 80px;
         }
 
-        /* ===== RESET & BASIS ===== */
+        /* Reset und Basis-Styles */
         * {
             margin: 0;
             padding: 0;
@@ -38,16 +39,10 @@
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Roboto', Arial, sans-serif;
             line-height: 1.6;
-            color: var(--dark-color);
+            color: #333;
             overflow-x: hidden;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
         }
 
         .container {
@@ -109,10 +104,10 @@
                 margin-bottom: 10px;
             }
 
-        /* ===== NAVIGATION ===== */
-        .navbar {
-            background: var(--light-color);
-            box-shadow: var(--shadow);
+        /* ===== MOBILE FIRST NAVIGATION (wie Kontakt-Seite) ===== */
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: fixed;
             width: 100%;
             top: 0;
@@ -120,69 +115,213 @@
         }
 
         .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
+            height: 70px;
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary-color);
+            font-size: 24px;
+            font-weight: bold;
+            color: #4e0909;
             text-decoration: none;
-        }
-
-            .logo span {
-                color: var(--secondary-color);
-            }
-
-        .nav-menu {
             display: flex;
-            list-style: none;
-            gap: 30px;
+            align-items: center;
+            gap: 10px;
         }
 
+        .logo-img {
+            height: 50px;
+            width: auto;
+        }
+
+        /* Desktop Navigation */
+        .desktop-nav {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        /* HOVER LINIE FÜR DESKTOP NAVIGATION */
         .nav-link {
             text-decoration: none;
-            color: var(--dark-color);
-            font-weight: 600;
-            font-size: 1rem;
-            transition: var(--transition);
+            color: #333;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s;
             position: relative;
+            overflow: hidden;
         }
-
-            .nav-link:hover {
-                color: var(--secondary-color);
-            }
 
             .nav-link::after {
                 content: '';
                 position: absolute;
-                bottom: -5px;
-                left: 0;
+                bottom: 0;
+                left: 50%;
                 width: 0;
                 height: 2px;
-                background: var(--secondary-color);
-                transition: width 0.3s;
+                background-color: #4e0909;
+                transition: all 0.3s ease;
+                transform: translateX(-50%);
             }
 
-            .nav-link:hover::after {
-                width: 100%;
+            .nav-link:hover::after,
+            .nav-link.active::after {
+                width: 80%;
             }
 
+            .nav-link:hover, .nav-link.active {
+                color: #4e0909;
+                background: rgba(78, 9, 9, 0.1);
+            }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            top: 100%;
+            left: 0;
+            z-index: 1001;
+            padding: 10px 0;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 12px 16px;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+            /* HOVER LINIE FÜR DROPDOWN-LINKS */
+            .dropdown-content a::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 16px;
+                width: 0;
+                height: 1px;
+                background-color: #4e0909;
+                transition: all 0.3s ease;
+            }
+
+            .dropdown-content a:hover::after {
+                width: calc(100% - 32px);
+            }
+
+            .dropdown-content a:hover {
+                background: #f5f5f5;
+                color: #4e0909;
+            }
+
+        /* Mobile Navigation */
         .hamburger {
             display: none;
             flex-direction: column;
             cursor: pointer;
             gap: 4px;
+            padding: 10px;
         }
 
             .hamburger span {
                 width: 25px;
                 height: 3px;
-                background: var(--dark-color);
+                background: #333;
                 transition: 0.3s;
+            }
+
+        .mobile-nav {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 70px);
+            background: white;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            overflow-y: auto;
+            z-index: 999;
+        }
+
+            .mobile-nav.active {
+                transform: translateX(0);
+            }
+
+            .mobile-nav a {
+                display: block;
+                padding: 16px 20px;
+                color: #333;
+                text-decoration: none;
+                border-bottom: 1px solid #eee;
+                font-size: 18px;
+                transition: all 0.3s;
+                position: relative;
+                overflow: hidden;
+            }
+
+                /* HOVER LINIE FÜR MOBILE NAVIGATION */
+                .mobile-nav a::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 20px;
+                    width: 0;
+                    height: 1px;
+                    background-color: #4e0909;
+                    transition: all 0.3s ease;
+                }
+
+                .mobile-nav a:hover::after {
+                    width: calc(100% - 40px);
+                }
+
+                .mobile-nav a:hover {
+                    background: #f5f5f5;
+                    color: #4e0909;
+                }
+
+        .mobile-dropdown-content {
+            display: none;
+            background: #f9f9f9;
+        }
+
+            .mobile-dropdown-content.active {
+                display: block;
+            }
+
+            /* HOVER LINIE FÜR MOBILE DROPDOWN-LINKS */
+            .mobile-dropdown-content a::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 20px;
+                width: 0;
+                height: 1px;
+                background-color: #4e0909;
+                transition: all 0.3s ease;
+            }
+
+            .mobile-dropdown-content a:hover::after {
+                width: calc(100% - 40px);
             }
 
         /* ===== HERO SECTION ===== */
@@ -191,16 +330,16 @@
             background-size: cover;
             background-position: center;
             color: white;
+            padding: 140px 20px 80px;
             text-align: center;
-            padding: 180px 0 100px;
+            border-bottom-right-radius: 50px;
             margin-top: 70px;
-            border-bottom-right-radius: 150px;
         }
 
             .hero h1 {
-                font-size: 3.5rem;
+                font-size: 3em;
                 margin-bottom: 20px;
-                animation: fadeInUp 1s ease-out;
+                font-weight: 300;
             }
 
         /* ===== ABOUT SECTION ===== */
@@ -442,7 +581,6 @@
                 margin-bottom: 10px;
             }
 
-                /* Hier ist die Korrektur für die blauen Links */
                 .footer-col ul li a {
                     color: var(--light-color);
                     text-decoration: none;
@@ -524,14 +662,9 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .hero {
-                padding: 150px 0 80px;
-                border-bottom-right-radius: 100px;
+            .hero h1 {
+                font-size: 2.8rem;
             }
-
-                .hero h1 {
-                    font-size: 2.8rem;
-                }
 
             .why-us-section {
                 background: var(--light-color);
@@ -547,47 +680,13 @@
         }
 
         @media (max-width: 768px) {
-            .nav-menu {
-                position: fixed;
-                left: -100%;
-                top: 70px;
-                flex-direction: column;
-                background-color: var(--light-color);
-                width: 100%;
-                text-align: center;
-                transition: 0.3s;
-                box-shadow: 0 10px 27px rgba(0,0,0,0.05);
-                padding: 20px 0;
-                gap: 0;
-            }
-
-                .nav-menu.active {
-                    left: 0;
-                }
-
-                .nav-menu li {
-                    margin: 15px 0;
-                }
-
+            /* Mobile Navigation (wie Kontakt-Seite) */
             .hamburger {
                 display: flex;
             }
 
-                .hamburger.active span:nth-child(2) {
-                    opacity: 0;
-                }
-
-                .hamburger.active span:nth-child(1) {
-                    transform: translateY(7px) rotate(45deg);
-                }
-
-                .hamburger.active span:nth-child(3) {
-                    transform: translateY(-7px) rotate(-45deg);
-                }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
+            .desktop-nav {
+                display: none;
             }
 
             .hero {
@@ -598,6 +697,11 @@
                 .hero h1 {
                     font-size: 2.2rem;
                 }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
 
             h2 {
                 font-size: 2rem;
@@ -619,6 +723,18 @@
                 grid-template-columns: 1fr;
                 gap: 30px;
                 text-align: center;
+            }
+
+            /* Mobile Navigation Anpassungen */
+            .mobile-nav a {
+                font-size: 16px;
+                padding: 14px 20px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-nav {
+                display: none;
             }
         }
 
@@ -643,35 +759,89 @@
                 padding: 15px 30px;
                 font-size: 1rem;
             }
+
+            .feature-card {
+                padding: 30px 20px;
+            }
+
+            .about-image img {
+                width: 100%;
+                height: auto;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container nav-container">
-            <a href="./../index.html" class="logo">HAMZA<span>J</span></a>
+    <!-- Header mit verbessertem Menü (wie Kontakt-Seite) -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="./../index.html" class="logo">
+                <img src="./../wp-content/uploads/2025/03/cropped-Screenshot_2025-03-22_121532-removebg-preview.png"
+                     alt="Hamzaj Bauservice Logo" class="logo-img">
+                HAMZAJ
+            </a>
 
-            <ul class="nav-menu">
-                <li><a href="./../index.html" class="nav-link">Startseite</a></li>
-                <li><a href="./../dienstleistungen/index.html" class="nav-link">Dienstleistungen</a></li>
-                <li><a href="./../projekte-2/index.html" class="nav-link">Projekte</a></li>
-                <li><a href="./../kontakt/index.html" class="nav-link">Kontakt</a></li>
-                <li><a href="./index.html" class="nav-link active">Über uns</a></li>
-            </ul>
+            <!-- Desktop Navigation -->
+            <nav class="desktop-nav">
+                <a href="./../index.html" class="nav-link">Startseite</a>
 
+                <div class="dropdown">
+                    <a href="javascript:void(0)" class="nav-link">Dienstleistungen</a>
+                    <div class="dropdown-content">
+                        <a href="./../trockenbau-2/index.html">Trockenbau</a>
+                        <a href="./../fasadenarbeit/index.html">Fasadenarbeit</a>
+                        <a href="./../elektro-sanitaerarbeiten/index.html">Elektro – Sanitärarbeiten</a>
+                        <a href="./../fussbodenheizungen/index.html">Fußbodenheizung</a>
+                        <a href="./../fussbodenverlegung-schleifen/index.html">Fußbodenverlegung & Schleifen</a>
+                        <a href="./../spachtel-malerarbeiten/index.html">Spachtel & Malerarbeiten</a>
+                        <a href="./../sockelleisten/index.html">Sockelleisten</a>
+                        <a href="./../abbrucharbeiten/index.html">Abbrucharbeiten</a>
+                        <a href="./../dachdeckerarbeit/index.html">Dachdeckerarbeit</a>
+                        <a href="./../kernsanierung/index.html">Kernsanierung</a>
+                        <a href="./../fliesenverlegung/index.html">Fliesenverlegung</a>
+                    </div>
+                </div>
+
+                <a href="./../projekte-2/index.html" class="nav-link">Projekte</a>
+                <a href="./../kontakt/index.html" class="nav-link">Kontakt</a>
+                <a href="./index.html" class="nav-link active">Über uns</a>
+            </nav>
+
+            <!-- Mobile Hamburger Menu -->
             <div class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
         </div>
-    </nav>
+
+        <!-- Mobile Navigation -->
+        <nav class="mobile-nav" id="mobileNav">
+            <a href="./../index.html">Startseite</a>
+            <a href="javascript:void(0)" class="mobile-dropdown-btn">Dienstleistungen</a>
+            <div class="mobile-dropdown-content" id="mobileDropdown">
+                <a href="./../trockenbau-2/index.html">Trockenbau</a>
+                <a href="./../fasadenarbeit/index.html">Fasadenarbeit</a>
+                <a href="./../elektro-sanitaerarbeiten/index.html">Elektro – Sanitärarbeiten</a>
+                <a href="./../fussbodenheizungen/index.html">Fußbodenheizung</a>
+                <a href="./../fussbodenverlegung-schleifen/index.html">Fußbodenverlegung & Schleifen</a>
+                <a href="./../spachtel-malerarbeiten/index.html">Spachtel & Malerarbeiten</a>
+                <a href="./../sockelleisten/index.html">Sockelleisten</a>
+                <a href="./../abbrucharbeiten/index.html">Abbrucharbeiten</a>
+                <a href="./../dachdeckerarbeit/index.html">Dachdeckerarbeit</a>
+                <a href="./../kernsanierung/index.html">Kernsanierung</a>
+                <a href="./../fliesenverlegung/index.html">Fliesenverlegung</a>
+            </div>
+            <a href="./../projekte-2/index.html">Projekte</a>
+            <a href="./../kontakt/index.html">Kontakt</a>
+            <a href="./index.html" class="active">Über uns</a>
+        </nav>
+    </header>
 
     <!-- Hero Section -->
     <header class="hero">
         <div class="container">
-            <h1 class="animate-fade-in">Über uns</h1>
+            <h1>Über uns</h1>
         </div>
     </header>
 
@@ -841,21 +1011,28 @@
     </footer>
 
     <script>
-        // Mobile Navigation Toggle
+        // Mobile Navigation (wie Kontakt-Seite)
         const hamburger = document.getElementById('hamburger');
-        const navMenu = document.querySelector('.nav-menu');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileDropdownBtn = document.querySelector('.mobile-dropdown-btn');
+        const mobileDropdown = document.getElementById('mobileDropdown');
 
         hamburger.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
             hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
         });
 
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
+        mobileDropdownBtn.addEventListener('click', () => {
+            mobileDropdown.classList.toggle('active');
+        });
+
+        // Close mobile nav when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!hamburger.contains(event.target) && !mobileNav.contains(event.target)) {
+                mobileNav.classList.remove('active');
                 hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
+                mobileDropdown.classList.remove('active');
+            }
         });
 
         // Text Toggle Function
@@ -910,7 +1087,7 @@
 
         // Navbar scroll effect
         window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
+            const navbar = document.querySelector('.header');
             if (window.scrollY > 50) {
                 navbar.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
             } else {
